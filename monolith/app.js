@@ -5,7 +5,7 @@ const routes = require('./routes/index')
 const { run } = require('./config/mongodb')
 
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: false }))
 
 run().then( async () => {
   console.log('mongo dah jalan')

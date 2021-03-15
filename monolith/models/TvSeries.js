@@ -1,7 +1,7 @@
 const mongodb = require('mongodb')
 const { getDatabase } = require('../config/mongodb')
 
-class TvSerie {
+class Tv {
 
   static find () {
     return getDatabase().collection('TvSeries').find().toArray()
@@ -23,4 +23,4 @@ class TvSerie {
   }
 }
 
-module.exports = TvSerie
+module.exports = Tv
