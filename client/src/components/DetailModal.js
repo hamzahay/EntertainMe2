@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/detailModal.css'
+import ConfirmModal from '../components/ConfirmModal'
 import { useMutation } from '@apollo/client'
 import { DELETE_MOVIE, GET_DATA, DELETE_TV } from '../graphql/query'
 import { useReactiveVar } from '@apollo/client'
@@ -16,6 +17,7 @@ export default function DetailModal (props) {
   const [deleteMovie, { data: deleteMovieResult }] = useMutation(DELETE_MOVIE)
   const [deleteSeries, { data: deleteSeriesResult }] = useMutation(DELETE_TV)
   const [favoriteStatus, setFavoriteStatus] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   useEffect (() => {
     if (data) {
@@ -71,8 +73,14 @@ export default function DetailModal (props) {
     }
   }
 
+  function deleteConfirm (e) {
+    e.preventDefault()
+    setShowModal(true)
+  }
+
   return (
     <div className="detail-modal">
+      { showModal ? <ConfirmModal movieDelete={movieDelete}  setShowModal={setShowModal} type="delete"/> : <div></div> }
       { modalData ? 
         <div className="modal-content" onClick={props.showDetail}>
           <img className="modal-img" src={modalData.poster_path} alt="Poster"></img>
@@ -98,7 +106,7 @@ export default function DetailModal (props) {
               <button className="btn" onClick={e => movieEdit(e)}>
                 <img className="icon" src={editIcon} alt="editIcon"></img>
               </button>
-              <button className="btn" onClick={e => movieDelete(e)}>
+              <button className="btn" onClick={e => deleteConfirm(e)}>
                 <img className="icon" src={deleteButton} alt="deleteIcon"></img>
               </button>
             </div>
