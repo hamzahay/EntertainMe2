@@ -1,0 +1,98 @@
+.detail-modal {
+  display: flex;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4)
+}
+
+.showModal {
+  display: block;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: row;
+  background-color: #fefefe;
+  width: 50vw;
+  max-height: 600px;
+  margin: auto auto;
+  z-index: 3;
+}
+
+.modal-img {
+  display: block;
+  width: 28vw;
+  min-width: 382px;
+}
+
+.content-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0px 25px;
+  margin-top: 0px;
+  overflow: auto;
+}
+
+.title {
+  margin: 0px;
+  margin-top: 0px;
+}
+
+.content-detail h4 {
+  margin: 0px;
+  margin-top: 10px;
+}
+
+.tags {
+  margin-top: 15px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 45px;
+}
+
+.btn, .btn-edit {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-edit {
+  color: white;
+  background-color: tomato;
+  border-radius: 5px;
+  margin: 5px 0px;
+  padding: 5px 15px;
+}
+
+.close-btn {
+  color: white;
+  align-self: center;
+  font-size: 14px;
+  display: flex;
+  background-color: rgb(230, 59, 59);
+  padding: 5px 10px;
+}
+
+.close-btn-container{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-btn:hover {
+  background-color: rgb(184, 50, 50);
+}
+
+.icon {
+  display: block;
+  max-width: 35px;
+}

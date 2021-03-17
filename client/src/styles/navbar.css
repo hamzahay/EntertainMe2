@@ -1,0 +1,39 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(70, 70, 70);
+  color: white;
+  height: 9vh;
+}
+
+.navbar h2 {
+  margin: 15px 10px;
+  text-shadow: 3px 3px 10px black;
+  cursor: pointer;
+}
+
+.navbar h2:hover {
+  transform: scale(1.05);
+  transition: 0.25s ease;
+}
+
+.link-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 25px;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 15px 15px;
+} 
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.active-link {
+  background-color: rgba(25, 25, 25, 0.37);
+}

@@ -1,0 +1,10 @@
+.loading {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgba(0, 0, 0, 0.466);
+  height: 91vh;
+}
+
+.loading-img {
+  margin: 10vh auto;
+}

@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server')
+const { gql, ApolloError } = require('apollo-server')
 const axios = require('axios')
 const Redis = require('ioredis')
 const redis = new Redis()
@@ -16,9 +16,9 @@ module.exports = {
 
     input MovieInput {
       title: String!
-      overview: String
-      poster_path: String
-      popularity: Float
+      overview: String!
+      poster_path: String!
+      popularity: Float!
       tags: [String]
     }
 
@@ -31,8 +31,8 @@ module.exports = {
     }
 
     extend type Mutation {
-      addMovie(input: MovieInput): Movie
-      updateMovie(id: ID!, input: MovieInput): MovieResponse
+      addMovie(input: MovieInput!): Movie
+      updateMovie(id: ID!, input: MovieInput!): MovieResponse
       deleteMovie(id: ID!): MovieResponse
     }
   `,
@@ -43,16 +43,15 @@ module.exports = {
         try {
           const moviesData = await redis.get('server:movies')
           if (moviesData) {
-            console.log('from redis')
             return JSON.parse(moviesData)
           } else {
-            console.log('from mongo')
             const { data } = await axios.get('http://localhost:4001')
             const response = await redis.set('server:movies', JSON.stringify(data))
             return data
           }
         } catch (err) {
           console.log(err)
+          return new ApolloError
         }
       }
     },
@@ -64,6 +63,7 @@ module.exports = {
           return data
         } catch (err) {
           console.log(err)
+          return new ApolloError
         }
       },
       async updateMovie(_, args) {
@@ -73,6 +73,7 @@ module.exports = {
           return data
         } catch (err) {
           console.log(err)
+          return new ApolloError
         }
       },
       async deleteMovie(_, args) {
@@ -82,6 +83,7 @@ module.exports = {
           return data
         } catch (err) {
           console.log(err)
+          return new ApolloError
         }
       }
     }

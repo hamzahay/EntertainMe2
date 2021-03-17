@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server')
+const { gql, ApolloError } = require('apollo-server')
 const axios = require('axios')
 const Redis = require('ioredis')
 const redis = new Redis()
@@ -15,10 +15,10 @@ module.exports = {
     }
 
     input TvInput {
-      title: String
-      overview: String
-      poster_path: String
-      popularity: Float
+      title: String!
+      overview: String!
+      poster_path: String!
+      popularity: Float!
       tags: [String]
     }
 
@@ -31,7 +31,7 @@ module.exports = {
     }
 
     extend type Mutation {
-      addTv(input: TvInput): Tv
+      addTv(input: TvInput!): Tv
       updateTv(id: ID!, input: TvInput): TvResponse
       deleteTv(id: ID!): TvResponse
     }
@@ -53,6 +53,7 @@ module.exports = {
           }
         } catch (err) {
           console.log(err)
+          return new ApolloError
         }
       }
     },
@@ -64,6 +65,7 @@ module.exports = {
           return data
         } catch (err) {
           console.log(err)
+          return new ApolloError
         }
       },
       async updateTv(_, args) {
@@ -73,6 +75,7 @@ module.exports = {
           return data
         } catch (err) {
           console.log(err)
+          return new ApolloError
         }
       },
       async deleteTv(_, args) {
@@ -82,6 +85,7 @@ module.exports = {
           return data
         } catch (err) {
           console.log(err)
+          return new ApolloError
         }
       }
     }

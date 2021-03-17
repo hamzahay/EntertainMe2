@@ -1,0 +1,50 @@
+.content {
+  flex: 1;
+  display: flex;
+  overflow: auto;
+  background-color: rgba(20, 20, 20, 0.068);
+  height: 337px;
+}
+
+.series {
+  margin-bottom: 35px;
+}
+
+.box {
+  display: flex;
+  gap: 15px;
+  padding: 25px 30px;
+}
+
+.home {
+  background-color: rgba(0, 0, 0, 0.048);
+  background-attachment: fixed;
+  min-height: 91vh;
+  max-height: 91vh;
+  overflow: auto;
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px 18px 3px 18px;
+  border-radius: 10px 10px 0px 0px;
+  margin-top: 45px;
+  margin-left: 20px;
+  margin-bottom: 0px;
+  background-color: rgba(20, 20, 20, 0.068);
+}
+
+.add-btn {
+  display: inline-block;
+  padding: 5px 18px 3px 18px;
+  border-radius: 10px 10px 0px 0px;
+  margin-top: 45px;
+  margin-left: 5px;
+  margin-bottom: 0px;
+  background-color: rgba(20, 20, 20, 0.253);
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: rgba(20, 20, 20, 0.192);
+}
